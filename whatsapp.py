@@ -5,6 +5,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 import datetime
 import time
+import numpy as np
 #import openpyxl as excel
 
 # function to read contacts from a text file
@@ -137,7 +138,8 @@ while user_input != 'q':
                         input_box.send_keys(msg + Keys.SHIFT + Keys.ENTER) # + Keys.ENTER (Uncomment it if your msg doesnt contain '\n')
                         # Link Preview Time, Reduce this time, if internet connection is Good
                         print('typed msg : ', msg)
-                        time.sleep(len(msg)//4) # Call it a pro gamer move !
+                        #time.sleep(len(msg)//6) # Call it a pro gamer move !
+                        time.sleep(np.round(np.random.uniform(1,5)))
                         input_box.send_keys(Keys.ENTER)
                     print("Successfully Send Message to : "+ target + '\n')
                     #success+=1

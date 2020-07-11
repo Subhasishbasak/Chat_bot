@@ -31,11 +31,11 @@ print('Credentials successfully entered')
 
 # fetching old follower(ees) list
 
-file1 = open("followers_2020-07-08.txt","r") # .txt file containing followers 
+file1 = open("../followers_2020-07-08.txt","r") # .txt file containing followers 
 
 followers = file1.readlines()
 
-file1 = open("following_2020-07-08.txt","r")  # .txt file containing following
+file1 = open("../following_2020-07-08.txt","r")  # .txt file containing following
 
 following = file1.readlines()
 
@@ -162,8 +162,8 @@ while user_input != 'q':
                                 print('Known User : Found username in list')
 
                     except Exception:
-                        print("Exception in liking loop : Try again")
-                        continue
+                        print("Exception in liking loop : MOVE ON")
+                        pass
 
 
                     # Comments and tracker

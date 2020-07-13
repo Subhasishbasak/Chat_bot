@@ -119,9 +119,13 @@ while user_input != 'q':
                     print("iteration number : ", x)
                     #Get the poster's username
                     time.sleep(3)
-                    username = driver.find_element_by_xpath('/html/body/div[4]/div[2]/div/article/header/div[2]/div[1]/div[1]/div/a').text
-                    likes_over_limit = False
-                    print('\n Got posters username : ', username)
+                    try :
+                        username = driver.find_element_by_xpath('/html/body/div[4]/div[2]/div/article/header/div[2]/div[1]/div[1]/div/a').text
+                        likes_over_limit = False
+                        print('\n Got posters username : ', username)
+                    except Exception:
+                        print('not loading the page maybe : MOVE ON')
+                        continue
                     try:
                         #get number of likes and compare it to the maximum number of likes to ignore post
                         time.sleep(4)

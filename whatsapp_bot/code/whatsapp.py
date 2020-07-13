@@ -5,7 +5,10 @@ from selenium import webdriver
 ## Import dependencies
 
 # Utils to be imported here..
-from utils.recursive import text_recursively
+from core.recursive import text_recursively
+from core.chat_bot import activate_bot
+#from utils.find_chat import search_chatter
+#from utils.get_msg import read_last_msg
 
 ## Login into WhatsApp Web :
 
@@ -22,14 +25,23 @@ user_input = 'temp'
 while user_input != 'q':
     
     print("\nEnter 'r' for recursive message")
+    print("\nEnter 'm' for fetching last msg")
     print("\nEnter 'q' to exit")
     
     user_input = input()
     
     if user_input == 'r':
         
-        #importing from recursive module
         text_recursively(driver)
+
+    elif user_input == 'm':
+
+        #user = input('\nEnter user name : \n')
+        #search_chatter(driver, user)
+        #msg = read_last_msg(driver)
+        #print('Last msg : \n', msg)
+        
+        activate_bot(driver)
     
     elif user_input == 'q':
      

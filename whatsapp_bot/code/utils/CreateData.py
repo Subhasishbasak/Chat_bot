@@ -8,7 +8,7 @@ def createdata():
 
     ## Reading data
     data = ""
-    inputPath = os.path.join(Rawpath)
+    inputPath = Rawpath
     for file in os.listdir(inputPath):
         filePath = os.path.join(inputPath, file)
         with open(filePath, encoding = "utf8") as f:
@@ -16,7 +16,7 @@ def createdata():
         data += " " + temp
 
     ## Creaitng output folder
-    outputPath = Rawpath + ("/Output/")
+    outputPath = Rawpath + ("Output/")
     if not os.path.exists(os.path.dirname(outputPath)):
         try:
             os.makedirs(os.path.dirname(outputPath))
@@ -66,10 +66,10 @@ def createdata():
 
 
     ## Writting created dataset
-    with open(outputPath + '\\incoming.txt', 'w', encoding = "utf8") as f:
+    with open(outputPath + 'incoming.txt', 'w', encoding = "utf8") as f:
         for item in incoming:
             f.write("%s\n" % item)
-    with open(outputPath + '\\outgoing.txt', 'w', encoding = "utf8") as f:
+    with open(outputPath + 'outgoing.txt', 'w', encoding = "utf8") as f:
         for item in outgoing:
             f.write("%s\n" % item)
 

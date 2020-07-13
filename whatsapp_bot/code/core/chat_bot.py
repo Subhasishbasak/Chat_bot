@@ -44,8 +44,8 @@ def activate_bot(driver):
         print('\nIteration {}, last chat time {}'.format(i, last_chat_time))
         
         ### Temp
-        print("Activation, Last", [activation_time, last_chat_time])
-        print(last_chat_time > activation_time)
+        #print("Activation, Last", [activation_time, last_chat_time])
+        #print(last_chat_time > activation_time)
         ########
 
         if last_chat_time > activation_time:
@@ -53,7 +53,7 @@ def activate_bot(driver):
             last_new_msg = msg[-1]
             print('\nDetected last new msg : ', last_new_msg)
 
-            reply = model.getReply(last_new_msg) 
+            reply = str(model.getReply(last_new_msg))
             print(reply)
 
             # Select the Input Box
@@ -71,7 +71,9 @@ def activate_bot(driver):
                 time.sleep(4)
                 f += 1
 
-            input_box.send_keys(reply + Keys.SHIFT + Keys.ENTER)
+            input_box.send_keys(reply)
+            time.sleep(2)
+            input_box.send_keys(Keys.SHIFT + Keys.ENTER)
             time.sleep(1)
             input_box.send_keys(Keys.ENTER)
             activation_time = last_chat_time

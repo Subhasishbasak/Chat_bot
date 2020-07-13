@@ -7,8 +7,7 @@ from selenium import webdriver
 # Utils to be imported here..
 from core.recursive import text_recursively
 from core.chat_bot import activate_bot
-#from utils.find_chat import search_chatter
-#from utils.get_msg import read_last_msg
+from core.clone_chat_bot import activate_clone_bot
 
 ## Login into WhatsApp Web :
 
@@ -17,7 +16,7 @@ try:
     driver = webdriver.Chrome('/media/subhasish/Professional/git_repos/chat_bot/chromedriver_linux64/chromedriver')
     print("Using Chrome as default browser")
 except:
-    driver = webdriver.Firefox(executable_path = r"D:/Academics/GIT-repository/Colaboration/Chat_bot/Firefox/geckodriver/geckodriver.exe")
+    driver = webdriver.Firefox(executable_path = '/media/subhasish/Professional/git_repos/chat_bot/Firefox/geckodriver/geckodriver.exe')
     print("Using Firefox as default browser")
     
 #link to open a site
@@ -31,6 +30,7 @@ while user_input != 'q':
     
     print("\nEnter 'r' for recursive message")
     print("\nEnter 'm' for activaing bot")
+    print("\nEnter 'c' for clone bot")
     print("\nEnter 'q' to exit")
     
     user_input = input()
@@ -43,6 +43,10 @@ while user_input != 'q':
 
         activate_bot(driver)
     
+    elif user_input == 'c':
+
+        activate_clone_bot(driver)
+
     elif user_input == 'q':
      
         driver.quit()

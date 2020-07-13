@@ -12,5 +12,5 @@ python whatsapp.py
 ## Features
 
 - Sending text msgs recursively 
+- Automated replying bot
 - Scheduled msgs (WIP)
-- Automated replying (WIP)

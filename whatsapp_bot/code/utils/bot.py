@@ -114,7 +114,7 @@ class Model():
     
     ## Function to return the reply of a message
     def getReply(self, newMsg):
-        botimoji = "🤖 -> "
+        botimoji = " ¯\_(ツ)_/¯ -> "
         replies = []
         closestMsg = self.getCloseMsg(newMsg)
         if closestMsg == None:

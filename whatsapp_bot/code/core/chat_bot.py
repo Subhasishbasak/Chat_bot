@@ -9,9 +9,11 @@ import time
 
 from utils.find_chat import search_chatter
 from utils.get_msg import read_last_msg
+import utils.bot as bot
 
 def activate_bot(driver):
     
+    model = bot.Model()
     f = 0
 
     def get_time_tuple(time_str):
@@ -40,13 +42,19 @@ def activate_bot(driver):
 
         last_chat_time = get_time_tuple(m[0].split('[')[1])
         print('\nIteration {}, last chat time {}'.format(i, last_chat_time))
+        
+        ### Temp
+        print("Activation, Last", [activation_time, last_chat_time])
+        print(last_chat_time > activation_time)
+        ########
 
         if last_chat_time > activation_time:
             print('\nNew chat detected at {} hr {} min'.format(last_chat_time[0], last_chat_time[1]))
             last_new_msg = msg[-1]
             print('\nDetected last new msg : ', last_new_msg)
 
-            reply = last_new_msg.upper()    
+            reply = model.getReply(last_new_msg) 
+            print(reply)
 
             # Select the Input Box
             time.sleep(2)
@@ -56,7 +64,7 @@ def activate_bot(driver):
             time.sleep(3)
             if f == 0:
                 time.sleep(3)
-                intro = "Hi, this is JACK :). \nSubhasish is not available rn, so I'm here to chat with u ! Although I'm under development but I can do a few cool stuffs. For the time being all I can do, is just to rply back the last text in uppercase for you :"
+                intro = "Hi, this is JACK :). \nSubhasish is not available rn, so I'm here to chat with u ! Although I'm under development but I can do a few cool stuffs."
                 input_box.send_keys(intro)
                 time.sleep(2)
                 input_box.send_keys(Keys.ENTER)

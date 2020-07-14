@@ -38,6 +38,7 @@ def activate_bot(driver):
         
         m = msg[0].split(' ')
         last_chat_owner = m[3]+' '+m[4].split(':')[0]
+        last_chat_owner = last_chat_owner.split(':')[0]
         print('\nlast_chat_owner', last_chat_owner)
 
         last_chat_time = get_time_tuple(m[0].split('[')[1])
@@ -48,7 +49,7 @@ def activate_bot(driver):
         #print(last_chat_time > activation_time)
         ########
 
-        if last_chat_time > activation_time:
+        if (last_chat_time > activation_time) or (last_chat_owner == user):
             print('\nNew chat detected at {} hr {} min'.format(last_chat_time[0], last_chat_time[1]))
             last_new_msg = msg[-1]
             print('\nDetected last new msg : ', last_new_msg)

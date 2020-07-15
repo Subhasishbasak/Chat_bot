@@ -13,7 +13,7 @@ from core.clone_chat_bot import activate_clone_bot
 
 # Driver to open a browser
 try:
-    driver = webdriver.Firefox('../../geckodriver-v0.26.0-linux64/geckodriver')
+    driver = webdriver.Firefox(executable_path='../../geckodriver-v0.26.0-linux64/geckodriver')
     print("Using Firefox as default browser in linux")
 except:
     try:

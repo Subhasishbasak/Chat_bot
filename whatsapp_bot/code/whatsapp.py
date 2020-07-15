@@ -13,11 +13,15 @@ from core.clone_chat_bot import activate_clone_bot
 
 # Driver to open a browser
 try:
-    driver = webdriver.Chrome('/media/subhasish/Professional/git_repos/chat_bot/chromedriver_linux64/chromedriver')
-    print("Using Chrome as default browser")
+    driver = webdriver.Firefox('../../geckodriver-v0.26.0-linux64/geckodriver')
+    print("Using Firefox as default browser in linux")
 except:
-    driver = webdriver.Firefox(executable_path = '/media/subhasish/Professional/git_repos/chat_bot/Firefox/geckodriver/geckodriver.exe')
-    print("Using Firefox as default browser")
+    try:
+        driver = webdriver.Chrome('../../chromedriver_linux64/chromedriver')
+        print("Using Chrome as alternate browser in linux")
+    except:
+        driver = webdriver.Firefox('../../Firefox/geckodriver/geckodriver.exe')
+        print("Using Firefox as default browser in Windows")
     
 #link to open a site
 driver.get("https://web.whatsapp.com/")

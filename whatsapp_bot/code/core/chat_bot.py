@@ -10,7 +10,7 @@ try:
     parentdir = os.path.dirname(currentdir)
     sys.path.insert(0, parentdir)
     ## Utility functions
-    import utils.Model as Model
+    import utils.bot as Model
     from utils.get_msg import read_last_msg
     from utils.find_chat import search_chatter
 except Exception as e:

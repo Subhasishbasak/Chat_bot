@@ -56,18 +56,26 @@ def text_recursively(driver):
             input_box = driver.find_elements_by_xpath('//*[@id="main"]/footer/div[1]/div[2]/div/div[2]')[0]
             
             # Send message
-            msg = input("Type message : \n")
-            if msg == 'abort':
+            comm = input('Enter comments separated ? : \n')
+            msg = comm.split('?')
+            
+            # to use our 100% tested convincing-text un-comment below:
+
+            #msg = msg + 'Bol ? Please? Please? Please?Arr kotokkhon? MAaf karo humko? please?please?please?rply?rply?rply?rply?please?please?please?arre bhagwan se toh daaro? please? bhagwan se daro?Ki re? ei tuku oo doya maya nei? EKTU DOYA MAYA NEI? Please? please? rr koto ? ebar ami more jabo kintu? bol na? accha bolis na rply toh de? rply oo dibi na? please? please? Pleassseee? Please? Bole dey? Bolle Dey? Please?please?Please?pplease?why r u doin this to me? please? ki hobe bolle?? rply toh de atleast? Please?please? Bol na? please? bol? please? please rply? rply? Block kore dili naki? please?rply toh de? please? esob thik na? please bol? please? please? Bol? please? bol naaaa? please rply? rply? please? please? rply toh de? please?please? Please? bol? rply? ARREYY KI HOLO? AREY KII HOOLO? BOL?PLEASE? RPLY? RplY? BOl? PLEAse? plEase?PlEase? Please? KI HOLO RE?'.split('?')
+
+            if comm == 'abort':
                 pass
             else:
                 r = input('How many times to iterate ? ')
 
                 for i in range(int(r)):
-                    input_box.send_keys(msg + Keys.SHIFT + Keys.ENTER) 
-                    print('typed msg : ', msg)
+                    num = int(len(msg))
+                    index = int(np.random.uniform(0, num))
+                    input_box.send_keys(msg[index] + Keys.SHIFT + Keys.ENTER) 
+                    print('typed msg : ', msg[index])
                     
                     #time.sleep(len(msg)//6) # Call it a pro gamer move !
-                    time.sleep(np.round(np.random.uniform(1,5)))
+                    time.sleep(np.round(np.random.uniform(1,2)))
                     
                     input_box.send_keys(Keys.ENTER)
                 

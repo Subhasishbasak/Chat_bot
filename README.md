@@ -9,6 +9,6 @@
 ## Directory layout
 
 - code     : core , utils, notebooks containing `.py` files and `.ipynb` notebooks
-- lib      : pre-constructed dictionary
+- lib      : pre-constructed dictionaries
 
 

@@ -108,10 +108,13 @@ def createdata():
     dataList = []
     for line in data:
         line = line.replace("\n", " ")
-        if line.split(": ")[1] == '<Media omitted>':
-            dataList.append([line.split(": ")[0], 'I wish I could send an imgae for this!'])
-        else:
-            dataList.append(line.split(": "))
+        try:
+            if line.split(": ")[1] == '<Media omitted>':
+                dataList.append([line.split(": ")[0], 'I wish I could send an imgae for this!'])
+            else:
+                dataList.append(line.split(": "))
+        except IndexError:
+            pass
 
     # Code for removing the text messages from the Whastapp user, from the very beginning (if exists)
 

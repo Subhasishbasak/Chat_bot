@@ -93,8 +93,8 @@ class Model():
         return self.model.wmdistance(sentence_1, sentence_2)    
     
     ## Function to return the closest messages given a raw text
-    def getCloseMsg(self, RawText):
-        if self.Method == 1:
+    def getCloseMsg(self, RawText, Method):
+        if Method == 1:
             temp = np.inf
             closestMsg = None
             for oldmsg in self.inProcessed:
@@ -102,7 +102,9 @@ class Model():
                 if similarity < temp:
                     temp = similarity
                     closestMsg = oldmsg
-        elif self.Method == 2:
+            print('\nfull search msg : {} \nsimilarity : {}\n'.format(closestMsg, temp))
+
+        elif Method == 2:
             temp = np.inf
             closestMsg = None
             for oldmsg in self.inProcessed:
@@ -110,13 +112,47 @@ class Model():
                 if similarity < temp:
                     temp = similarity
                     closestMsg = oldmsg
+        elif Method == 3:
+            temp = temp2 = np.inf
+            closestMsg = None
+            newMsg, prevMsg = RawText
+
+            if prevMsg is None:
+                prevMsg = newMsg
+            
+            # Searching in whole set for the 1st case :
+            for idx in range(len(self.inProcessed)):
+                similarity = self.CosSifDist(prevMsg, self.inProcessed[idx])
+                if similarity < temp:
+                    temp = similarity
+                    closestMsg = self.inProcessed[idx] #+ '__similarity is__' + str(similarity)
+
+                    position = idx
+            #print('similarity score : ', temp)
+            
+            # Searching in the subset for 2nd case onwards :
+            if prevMsg != newMsg:
+                try:
+                    #print('searching in subset, pos {}'.format(position))
+                    for msg in self.inProcessed[position - 5 : position + 5]:
+                        similarity = self.CosSifDist(newMsg, msg)
+                        if similarity < temp2:
+                            temp2 = similarity
+                            closestMsg = msg #+ '__similarity is__' + str(similarity)
+
+                except Exception as e:
+                    print('Most probably IndexError {}'.format(e))
+                    closestMsg = 'Cest la errur'
+            print('\nsubset search msg : {} \nsimilarity : {}'.format(closestMsg, similarity))
+
         return closestMsg 
     
+
     ## Function to return the reply of a message
     def getReply(self, newMsg):
         botimoji = " ¯\_(ツ)_/¯ -> "
         replies = []
-        closestMsg = self.getCloseMsg(newMsg)
+        closestMsg = self.getCloseMsg(newMsg, 1)
         if closestMsg == None:
             return(botimoji + "Sorry, I didnot get you..")
         index = self.inDic[closestMsg]
@@ -125,7 +161,22 @@ class Model():
             replies.append(self.outDicMap[i])
         
         return(botimoji + random.choice(replies))
-    
+
+    ## Function to return the reply of a message with Memory 
+    def getReply_m(self, newMsg, prevMsg):
+        
+        botimoji = " 🤖  -> "
+        replies = []
+        closestMsg = self.getCloseMsg([newMsg, prevMsg], 3)
+        if closestMsg == None:
+            return(botimoji + "Sorry, I didnot get you..")
+        index = self.inDic[closestMsg]
+        repliesindex = self.mappingDic[index]
+        for i in repliesindex:
+            replies.append(self.outDicMap[i])
+        
+        return(botimoji + random.choice(replies))
+
     
     
     
